@@ -39,6 +39,11 @@ variable "appd_controller_url" {
   description = "URL of the AppDynamics controller."
 }
 
+variable "appd_controller_url" {
+  type        = string
+  description = "The URL of the AppDynamics controller, including port."
+}
+
 variable "appd_controller_hostname" {
   type        = string
   description = "The nostname of the AppDynamics controller."
