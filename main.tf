@@ -27,7 +27,7 @@ resource "kubernetes_namespace" "appdynamics" {
 # DEPLOY APPDYNAMICS CLUSTER AGENT
 ############################################################
 module "clusteragent" {
-  depends_on = [module.appdynamics]
+  depends_on = [kubernetes_namespace.appdynamics]
 
   count = var.deploy_clusteragent ? 1 : 0
 
