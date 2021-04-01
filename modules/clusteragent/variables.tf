@@ -57,12 +57,12 @@ variable "registry" {
 
 variable "ns_to_monitor" {
   type        = list
-  default     = ["default", "kube-system", "appdynamics"]
+  default     = ["default", "kube-system", "kube-public", "kube-node-lease", "iks", "appdynamics"]
   description = "The list of namespaces to monitor."
 }
 
 variable "ns_to_instrument" {
   type        = list
-  default     = []
+  default     = ["default"]
   description = "The list of namespaces to instrument."
 }
