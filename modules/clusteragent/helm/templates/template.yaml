@@ -1,0 +1,51 @@
+apiVersion: appdynamics.com/v1alpha1
+kind: Clusteragent
+metadata:
+  name: k8s-cluster-agent
+  namespace: {{ .Release.Namespace }}
+spec:
+  controllerUrl: {{ .Values.appd_controller_url }}
+  account: {{ .Values.appd_account_name }}
+  appName: {{ .Values.appname }}
+  proxyUrl: {{ .Values.proxy_url }}
+  serviceAccountName: appdynamics-cluster-agent
+  logLevel: "INFO"
+  image: "docker.io/appdynamics/cluster-agent:20.10.0"
+  imageInfo:
+    dotnetcore:
+      agentMountPath: /opt/appdynamics
+      image: docker.io/appdynamics/dotnet-core-agent:latest
+      imagePullPolicy: IfNotPresent
+    java:
+      agentMountPath: /opt/appdynamics
+      image: docker.io/appdynamics/java-agent:latest
+      imagePullPolicy: IfNotPresent
+    nodejs:
+      agentMountPath: /opt/appdynamics
+      image: docker.io/appdynamics/nodejs-agent:20.8.0-stretch-slimv10
+      imagePullPolicy: IfNotPresent
+  instrumentContainer: first
+  stdoutLogging: "true"
+  nsToMonitor: {{ .Values.ns_to_monitor }}
+  appNameStrategy: manual
+  defaultAppname: {{ .Values.appname }}
+---
+apiVersion: appdynamics.com/v1alpha1
+kind: InfraViz
+metadata:
+  name: appd-infraviz
+  namespace: {{ .Release.Namespace }}
+spec:
+  controllerUrl: {{ .Values.appd_controller_url }}
+  image: {{ .Values.registry }}/appd-nodeagent:v1
+  account: {{ .Values.appd_account_name }}
+  globalAccount: {{ .Values.appd_global_account }}
+  netVizPort: 3892
+  enableServerViz: "true"
+  enableDockerViz: "true"
+  enableMasters: true
+  stdoutLogging: false
+  uniqueHostId: spec.nodeName
+  {{- if .Values.proxy_url }}
+  proxyUrl: {{ .Values.proxy_url }}
+  {{- end }}

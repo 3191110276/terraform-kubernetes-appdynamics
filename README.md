@@ -1,1 +1,1 @@
-# terraform-kubernetes-appdynamics
+# Terraform module for AppDynamics on Kubernetes
