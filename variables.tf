@@ -90,11 +90,13 @@ variable "proxy_url" {
 
 variable "proxy_host" {
   type        = string
+  default     = ""
   description = ""
 }
 
 variable "proxy_port" {
   type        = string
+  default     = ""
   description = ""
 }
 
