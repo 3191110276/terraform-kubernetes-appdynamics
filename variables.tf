@@ -35,12 +35,6 @@ variable "cluster_name" {
 
 variable "appd_controller_url" {
   type        = string
-  default     = ""
-  description = "URL of the AppDynamics controller."
-}
-
-variable "appd_controller_url" {
-  type        = string
   description = "The URL of the AppDynamics controller, including port."
 }
 
