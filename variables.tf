@@ -102,7 +102,7 @@ variable "proxy_port" {
 
 variable "ns_to_monitor" {
   type        = list
-  default     = ["default", "kube-system", "appdynamics"]
+  default     = ["default", "kube-system", "kube-public", "kube-node-lease", "iks", "appdynamics"]
   description = "The list of namespaces to monitor."
 }
 
