@@ -28,7 +28,7 @@ spec:
   stdoutLogging: "true"
   nsToMonitor:
   {{- range .Values.ns_to_monitor }}
-    - {{ . | title | quote }}
+    - {{ . | quote }}
   {{- end }} 
   appNameStrategy: manual
   defaultAppname: {{ .Values.appname }}
