@@ -26,7 +26,10 @@ spec:
       imagePullPolicy: IfNotPresent
   instrumentContainer: first
   stdoutLogging: "true"
-  nsToMonitor: ["default", "kube-system", "kube-public", "brewery"] #{{ .Values.ns_to_monitor }}
+  nsToMonitor:
+  {{- range .Values.ns_to_monitor }}
+    - {{ . | title | quote }}
+  {{- end }} 
   appNameStrategy: manual
   defaultAppname: {{ .Values.appname }}
 ---
