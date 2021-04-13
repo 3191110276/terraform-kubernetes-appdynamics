@@ -114,7 +114,7 @@ variable "ns_to_instrument" {
 
 variable "instrumentation_app_name" {
   type        = string
-  default     = "app"
+  default     = "instrumented_app"
   description = "The application that the instrumented components will be assigned to."
 }
 
