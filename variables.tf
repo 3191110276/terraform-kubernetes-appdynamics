@@ -112,6 +112,11 @@ variable "ns_to_instrument" {
   description = "The namespace(s) to instrument."
 }
 
+variable "instrumentation_app_name" {
+  type        = string
+  default     = "app"
+  description = "The application that the instrumented components will be assigned to."
+}
 
 variable "db_name" {
   type        = string
