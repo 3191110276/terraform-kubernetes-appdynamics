@@ -107,9 +107,9 @@ variable "ns_to_monitor" {
 }
 
 variable "ns_to_instrument" {
-  type        = list
-  default     = []
-  description = "The list of namespaces to instrument."
+  type        = string
+  default     = "default"
+  description = "The namespace(s) to instrument."
 }
 
 
