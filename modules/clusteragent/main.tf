@@ -448,6 +448,11 @@ resource "helm_release" "appd-crd" {
     name  = "ns_to_instrument"
     value = var.ns_to_instrument
   }
+  
+  set {
+    name  = "instrumentation_app_name"
+    value = var.instrumentation_app_name
+  }
 
   set {
     name  = "registry"
