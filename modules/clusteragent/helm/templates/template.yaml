@@ -30,8 +30,8 @@ spec:
   {{- range .Values.ns_to_monitor }}
     - {{ . | quote }}
   {{- end }} 
-  #instrumentationMethod: Env
-  #nsToInstrumentRegex: "{{ .Values.ns_to_instrument }}"
+  instrumentationMethod: Env
+  nsToInstrumentRegex: "{{ .Values.ns_to_instrument }}"
   #instrumentationRules:
   #  - namespaceRegex: "default"
   #    appName: "test"
