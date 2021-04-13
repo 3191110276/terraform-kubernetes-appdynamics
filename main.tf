@@ -47,7 +47,7 @@ module "clusteragent" {
   ns_to_monitor    = var.ns_to_monitor
   ns_to_instrument = var.ns_to_instrument
   
-  instrumented_app = var.instrumented_app
+  instrumentation_app_name = var.instrumented_app
 }
 
 
