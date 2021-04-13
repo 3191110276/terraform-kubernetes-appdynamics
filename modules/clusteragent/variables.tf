@@ -66,3 +66,9 @@ variable "ns_to_instrument" {
   default     = "default"
   description = "The namespace(s) to instrument."
 }
+
+variable "instrumentation_app_name" {
+  type        = string
+  default     = "procurement"
+  description = "The application that the instrumented components will be assigned to."
+}
