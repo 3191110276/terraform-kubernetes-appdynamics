@@ -120,30 +120,36 @@ variable "instrumentation_app_name" {
 
 variable "db_name" {
   type        = string
+  default     = "DB"
   description = ""
 }
 
 variable "db_type" {
   type        = string
+  default     = "MYSQL"
   description = ""
 }
 
 variable "db_hostname" {
   type        = string
+  default.    = ""
   description = ""
 }
 
 variable "db_port" {
   type        = string
+  default     = ""
   description = ""
 }
 
 variable "db_username" {
   type        = string
+  default     = "admin"
   description = ""
 }
 
 variable "db_password" {
   type        = string
+  default     = "password"
   description = ""
 }
