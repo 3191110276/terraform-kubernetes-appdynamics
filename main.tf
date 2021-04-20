@@ -1,14 +1,14 @@
 ############################################################
 # REQUIRED PROVIDERS
 ############################################################
-terraform {
-  required_providers {
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = ">= 2.0.2"
-    }
-  }
-}
+#terraform {
+#  required_providers {
+#    kubernetes = {
+#      source  = "hashicorp/kubernetes"
+#      version = ">= 2.0.2"
+#    }
+#  }
+#}
 
 
 ############################################################
@@ -26,29 +26,29 @@ resource "kubernetes_namespace" "appdynamics" {
 ############################################################
 # DEPLOY APPDYNAMICS CLUSTER AGENT
 ############################################################
-module "clusteragent" {
-  depends_on = [kubernetes_namespace.appdynamics]
-
-  count = var.deploy_clusteragent ? 1 : 0
-
-  source  = "./modules/clusteragent"
-
-  cluster_name   = var.cluster_name
-
-  appd_controller_url = var.appd_controller_url
-  appd_account_name   = var.appd_account_name
-  appd_controller_key = var.appd_controller_key
-  appd_global_account = var.appd_global_account
-  appd_username       = var.appd_username
-  appd_password       = var.appd_password
-
-  proxy_url = var.proxy_url
-
-  ns_to_monitor    = var.ns_to_monitor
-  ns_to_instrument = var.ns_to_instrument
-  
-  instrumentation_app_name = var.instrumentation_app_name
-}
+#module "clusteragent" {
+#  depends_on = [kubernetes_namespace.appdynamics]
+#
+#  count = var.deploy_clusteragent ? 1 : 0
+#
+#  source  = "./modules/clusteragent"
+#
+#  cluster_name   = var.cluster_name
+#
+#  appd_controller_url = var.appd_controller_url
+#  appd_account_name   = var.appd_account_name
+#  appd_controller_key = var.appd_controller_key
+#  appd_global_account = var.appd_global_account
+#  appd_username       = var.appd_username
+#  appd_password       = var.appd_password
+#
+#  proxy_url = var.proxy_url
+#
+#  ns_to_monitor    = var.ns_to_monitor
+#  ns_to_instrument = var.ns_to_instrument
+#  
+#  instrumentation_app_name = var.instrumentation_app_name
+#}
 
 
 ############################################################
