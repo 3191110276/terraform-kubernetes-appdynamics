@@ -5,7 +5,7 @@ terraform {
   required_providers {
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = ">= 1.10.0"
+      version = ">= 2.0.2"
     }
     appdynamics = {
       source = "3191110276/appdynamics"
