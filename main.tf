@@ -54,29 +54,29 @@ module "clusteragent" {
 ############################################################
 # DEPLOY AND CONFIGURE APPDYNAMICS DB COLLECTOR
 ############################################################
-module "dbcollector" {
-  depends_on = [kubernetes_namespace.appdynamics]
-
-  count = var.deploy_dbcollector ? 1 : 0
-
-  source  = "./modules/dbcollector"
-
-  namespace = var.namespace
-
-  app_name                 = var.cluster_name
-  appd_account_name        = var.appd_account_name
-  appd_controller_hostname = var.appd_controller_hostname
-  appd_controller_port     = var.appd_controller_port
-  appd_controller_ssl      = var.appd_controller_ssl
-  appd_controller_key      = var.appd_controller_key
-
-  proxy_host = var.proxy_host
-  proxy_port = var.proxy_port
-
-  db_name      = var.db_name
-  db_type      = var.db_type
-  db_hostname  = var.db_hostname
-  db_port      = var.db_port
-  db_username  = var.db_username
-  db_password  = var.db_password
-}
+#module "dbcollector" {
+#  depends_on = [kubernetes_namespace.appdynamics]
+#
+#  count = var.deploy_dbcollector ? 1 : 0
+#
+#  source  = "./modules/dbcollector"
+#
+#  namespace = var.namespace
+#
+#  app_name                 = var.cluster_name
+#  appd_account_name        = var.appd_account_name
+#  appd_controller_hostname = var.appd_controller_hostname
+#  appd_controller_port     = var.appd_controller_port
+#  appd_controller_ssl      = var.appd_controller_ssl
+#  appd_controller_key      = var.appd_controller_key
+#
+#  proxy_host = var.proxy_host
+#  proxy_port = var.proxy_port
+#
+#  db_name      = var.db_name
+#  db_type      = var.db_type
+#  db_hostname  = var.db_hostname
+#  db_port      = var.db_port
+#  db_username  = var.db_username
+#  db_password  = var.db_password
+#}
