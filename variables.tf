@@ -132,7 +132,7 @@ variable "db_type" {
 
 variable "db_hostname" {
   type        = string
-  default.    = ""
+  default     = ""
   description = ""
 }
 
