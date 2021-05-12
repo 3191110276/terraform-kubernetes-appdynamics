@@ -37,6 +37,11 @@ resource "kubernetes_config_map" "dbcollector" {
 }
 
 resource "kubernetes_deployment" "dbcollector" {
+  wait_for_completion = true
+  timeouts {
+    create = "900s"
+  }
+  
   metadata {
     name      = "appd-dbagent"
     namespace = var.namespace
