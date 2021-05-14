@@ -38,7 +38,7 @@ resource "kubernetes_config_map" "dbcollector" {
 
 resource "kubernetes_deployment" "dbcollector" {
   timeouts {
-    create = "1800s"
+    create = "3600s"
   }
   
   metadata {
