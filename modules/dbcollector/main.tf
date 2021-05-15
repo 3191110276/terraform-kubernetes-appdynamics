@@ -52,7 +52,7 @@ resource "kubernetes_deployment" "dbcollector" {
   spec {
     replicas = 1
     
-    progress_deadline_seconds = "3600s"
+    progress_deadline_seconds = 3600
 
     selector {
       match_labels = {
