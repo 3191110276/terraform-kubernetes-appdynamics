@@ -4,7 +4,7 @@
 variable "namespace" {
   type        = string
   default     = "appdynamics"
-  description = "Namespace used for deploying the AppDynamics objects. This namespace has to exist and is not provisioned by this module."
+  description = "Namespace used for deploying the AppDynamics objects."
 }
 
 variable "create_namespace" {
