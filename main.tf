@@ -20,6 +20,10 @@ terraform {
 ############################################################
 resource "kubernetes_namespace" "appdynamics" {
   count = var.create_namespace ? 1 : 0
+  
+  timeouts {
+    delete = "3600s"
+  }
 
   metadata {
     name = var.namespace
