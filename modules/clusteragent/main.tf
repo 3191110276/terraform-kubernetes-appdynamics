@@ -407,8 +407,156 @@ resource "kubernetes_role_binding" "appdynamics-infraviz" {
 ############################################################
 # DEPLOY CRDS AND CUSTOM ELEMENTS
 ############################################################
+resource "kubernetes_manifest" "clusteragents_crd" {
+  provider = kubernetes-alpha
+
+  manifest = {
+    "apiVersion" = "apiextensions.k8s.io/v1beta1"
+    "kind" = "CustomResourceDefinition"
+    "metadata" = {
+      "name" = "clusteragents.appdynamics.com"
+    }
+    "spec" = {
+      "group" = "appdynamics.com"
+      "names" = {
+        "kind" = "Clusteragent"
+        "listKind" = "ClusteragentList"
+        "plural" = "clusteragents"
+        "singular" = "clusteragent"
+      }
+      "scope" = "Namespaced"
+      "version" = "v1alpha1"
+    }
+  }
+}
+
+
+resource "kubernetes_manifest" "clustercollectors_crd" {
+  provider = kubernetes-alpha
+
+  manifest = {
+    "apiVersion" = "apiextensions.k8s.io/v1beta1"
+    "kind" = "CustomResourceDefinition"
+    "metadata" = {
+      "name" = "clustercollectors.appdynamics.com"
+    }
+    "spec" = {
+      "group" = "appdynamics.com"
+      "names" = {
+        "kind" = "Clustercollector"
+        "listKind" = "ClustercollectorList"
+        "plural" = "clustercollectors"
+        "singular" = "clustercollector"
+      }
+      "scope" = "Namespaced"
+      "validation" = {
+        "openAPIV3Schema" = {
+          "description" = "Clustercollector is the Schema for the clustercollectors API"
+          "properties" = {
+            "apiVersion" = {
+              "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources"
+              "type" = "string"
+            }
+            "kind" = {
+              "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds"
+              "type" = "string"
+            }
+            "metadata" = {
+              "type" = "object"
+            }
+            "spec" = {
+              "description" = "ClustercollectorSpec defines the desired state of Clustercollector"
+              "properties" = {
+                "image" = {
+                  "type" = "string"
+                }
+                "serviceAccountName" = {
+                  "type" = "string"
+                }
+              }
+            }
+          }
+        }
+      }
+      "version" = "v1alpha1"
+      "versions" = [
+        {
+          "name" = "v1alpha1"
+          "served" = true
+          "storage" = true
+        },
+      ]
+    }
+  }
+}
+
+
+resource "kubernetes_manifest" "infravizs_crd" {
+  provider = kubernetes-alpha
+
+  manifest = {
+    "apiVersion" = "apiextensions.k8s.io/v1beta1"
+    "kind" = "CustomResourceDefinition"
+    "metadata" = {
+      "name" = "infravizs.appdynamics.com"
+    }
+    "spec" = {
+      "group" = "appdynamics.com"
+      "names" = {
+        "kind" = "InfraViz"
+        "listKind" = "InfraVizList"
+        "plural" = "infravizs"
+        "singular" = "infraviz"
+      }
+      "scope" = "Namespaced"
+      "version" = "v1alpha1"
+      "versions" = [
+        {
+          "name" = "v1alpha1"
+          "served" = true
+          "storage" = true
+        },
+      ]
+    }
+  }
+}
+
+
+resource "kubernetes_manifest" "adams_crd" {
+  provider = kubernetes-alpha
+
+  manifest = {
+    "apiVersion" = "apiextensions.k8s.io/v1beta1"
+    "kind" = "CustomResourceDefinition"
+    "metadata" = {
+      "name" = "adams.appdynamics.com"
+    }
+    "spec" = {
+      "group" = "appdynamics.com"
+      "names" = {
+        "kind" = "Adam"
+        "listKind" = "AdamList"
+        "plural" = "adams"
+        "singular" = "adam"
+      }
+      "scope" = "Namespaced"
+      "version" = "v1alpha1"
+      "versions" = [
+        {
+          "name" = "v1alpha1"
+          "served" = true
+          "storage" = true
+        },
+      ]
+    }
+  }
+}
+
+
 resource "helm_release" "appd-crd" {
   name       = "appd-crd"
+  
+  depends_on = [kubernetes_manifest.clusteragents_crd, kubernetes_manifest.clustercollectors_crd, kubernetes_manifest.infravizs_crd, kubernetes_manifest.adams_crd]
 
   chart      = "${path.module}/helm/"
 
