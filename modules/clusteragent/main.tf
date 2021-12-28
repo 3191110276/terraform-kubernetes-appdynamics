@@ -108,6 +108,11 @@ resource "kubernetes_role_binding" "appdynamics-operator" {
 
 
 resource "kubernetes_deployment" "appdynamics-operator" {
+  
+  timeouts {
+    create = "3600s"
+  }
+  
   metadata {
     name      = "appdynamics-operator"
     namespace = var.namespace
